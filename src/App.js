@@ -11,10 +11,17 @@ class App {
 
     }
   }
+  splitInput(input) {
+    const DEFAULT_SEPARATOR_REGEX = new RegExp(/,|:/);
+    const numbers = input.split(DEFAULT_SEPARATOR_REGEX).map(Number);
+    return numbers;
+  }
   async run() {
     const input = await this.getInput();
+    const numbers = this.splitInput(input);
+    const result = numbers.reduce((prev, cur) => prev + cur, 0);
 
-    Console.print(`입력: ${input}`);
+    Console.print(`결과 : ${result}`);  
   }
 }
 
